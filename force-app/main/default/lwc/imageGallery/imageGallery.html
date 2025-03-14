@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Image Gallery">
+        <div class="grid-container">
+            <template for:each={images} for:item="image">
+                <div 
+                    key={image.id} 
+                    class="image-item" 
+                    data-id={image.id} 
+                    draggable="true" 
+                    ondragstart={handleDragStart} 
+                    ondragover={handleDragOver} 
+                    ondrop={handleDrop}
+                >
+                    <lightning-button-icon 
+                        icon-name="utility:drag" 
+                        alternative-text="Drag" 
+                        size="small" 
+                        class="drag-icon"
+                    ></lightning-button-icon>
+                    <img src={image.thumbnailUrl} alt={image.name} class="image-thumbnail" />
+                    <p>Image {image.sequence}</p>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

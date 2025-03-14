@@ -1,0 +1,29 @@
+.scroll-container {
+    width: 100%;
+    max-width: 100vw; /* Ensure it doesn't exceed viewport width */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Prevent vertical scrolling */
+    white-space: nowrap; /* Ensure items stay in a single row */
+    padding-bottom: 10px; /* Avoid overlap with scrollbar */
+    display: flex;
+}
+
+/* Inner content expands to fit items */
+.scroll-content {
+    display: inline-flex; /* Allows progress bar & button in one row */
+    align-items: center; /* Keeps them aligned */
+    white-space: nowrap; /* Prevent wrapping */
+    width: max-content; /* Ensure full width for items */
+}
+
+/* Ensure text is fully visible */
+lightning-progress-step {
+    min-width: 120px; /* Adjust this if labels are getting cut off */
+    text-align: center;
+}
+
+/* Style for the button */
+.styled-button {
+    margin-left: 10px; /* Space between last status and button */
+    flex-shrink: 0; /* Prevent button from resizing */
+}

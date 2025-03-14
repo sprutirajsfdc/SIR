@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Dubai_Content_Mail</name>
+        <label>Dubai Content Mail</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <actionName>Content_Request_Form__c.Dubai_Contetn</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Content_Request_Form__c.Dubai_Contetn</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>saudi_Content_Mail</name>
+        <label>saudi Content Mail</label>
+        <locationX>578</locationX>
+        <locationY>431</locationY>
+        <actionName>Content_Request_Form__c.KSA_Contetn</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Content_Request_Form__c.KSA_Contetn</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Uk_Content_Mail</name>
+        <label>Uk Content Mail</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <actionName>Content_Request_Form__c.UK_Contetn</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Content_Request_Form__c.UK_Contetn</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <decisions>
+        <name>Dubai_Content</name>
+        <label>Dubai Content</label>
+        <locationX>446</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Dubai</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Listing__r.Listing_Region__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Dubai Listing</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Dubai_Content_Mail</targetReference>
+            </connector>
+            <label>Dubai</label>
+        </rules>
+        <rules>
+            <name>United_Kingdom</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Listing__r.Listing_Region__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>UK Listing</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Uk_Content_Mail</targetReference>
+            </connector>
+            <label>United Kingdom</label>
+        </rules>
+        <rules>
+            <name>Saudi</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Listing__r.Listing_Region__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Saudi Listing</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>saudi_Content_Mail</targetReference>
+            </connector>
+            <label>Saudi</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Send email Notifcation to Owner {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Send email Notifcation to Owner</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>320</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Dubai_Content</targetReference>
+        </connector>
+        <object>Content_Request_Form__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Listing Sub Status" icon-name="standard:sales_path">
+       
+
+        <!-- Scrollable progress indicator -->
+        <lightning-progress-indicator current-step={currentvalue} type="path" variant="base" class="scrollable-progress-indicator">
+            <!-- Loop over picklistValues and stepValues -->
+            <template for:each={picklistValues} for:item="status" for:index="index">
+                <lightning-progress-step
+                   key={status.value}
+                   label={status.label}
+                   value={status.value}
+                   onclick={pathHandler}>
+                </lightning-progress-step>
+            </template>
+        </lightning-progress-indicator>
+
+        <div class="container">
+            <lightning-button 
+                label="Update Listing Sub Status" 
+                onclick={updateStatus} 
+                class="styled-button">
+            </lightning-button>
+        </div>
+    </lightning-card>
+</template>

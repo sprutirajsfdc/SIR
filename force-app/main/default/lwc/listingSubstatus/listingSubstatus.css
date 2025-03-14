@@ -1,0 +1,70 @@
+/* Style the progress indicator to adjust its width based on the number of steps */
+lightning-progress-indicator {
+    width: 100%; /* Full width of the container */
+    margin: 0 auto; /* Center it horizontally */
+    display: flex; /* Use flexbox to adjust the layout */
+    justify-content: space-between; /* Distribute the steps evenly */
+    padding: 0 10px; /* Optional: add padding to ensure space around the steps */
+}
+
+/* Style each progress step */
+lightning-progress-step {
+    font-size: 12px; /* Font size for the step labels */
+    padding: 5px 0; /* Adjust padding to make the steps more compact */
+    text-align: center; /* Center align the text inside each step */
+    flex: 1 1 auto; /* Make each step flexible and fit in available space */
+    min-width: 80px; /* Minimum width for each step to ensure proper display */
+}
+
+/* Optional: Limit the width of each step (if necessary) */
+lightning-progress-step label {
+    white-space: nowrap; /* Prevent label text from wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Show ellipsis if label is too long */
+}
+
+/* Style for active, completed, and upcoming steps */
+lightning-progress-step.completed {
+    background-color: #00c853; /* Green color for completed steps */
+    color: white; /* White text for completed steps */
+}
+
+lightning-progress-step.current {
+    background-color: #2196f3; /* Blue color for current step */
+    color: white; /* White text for current step */
+}
+
+lightning-progress-step.upcoming {
+    background-color: #e0e0e0; /* Light grey for upcoming steps */
+    color: #757575; /* Dark grey text color */
+}
+
+/* Hover effect for progress steps */
+lightning-progress-step:hover {
+    background-color: #1565c0; /* Darker blue on hover */
+    color: white;
+}
+/* Allow horizontal scrolling */
+.scrollable-progress-indicator {
+    overflow-x: auto;  /* Enables horizontal scrolling */
+    white-space: nowrap;  /* Prevents the items from wrapping */
+    width: 100%;  /* Make sure the container takes the full width */
+}
+
+/* Style for the navigation buttons */
+.progress-nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: -30px; /* Position the buttons above the progress indicator */
+    margin-bottom: 10px;
+}
+
+/* Customize button appearance */
+.scroll-button-left, .scroll-button-right {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 20px;
+}

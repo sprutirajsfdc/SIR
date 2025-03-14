@@ -1,0 +1,82 @@
+.search-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+     margin-left: 1rem;
+     margin-right: 1rem;
+
+}
+
+
+.search-bar .slds-form-element {
+    width: calc(25% - 0.75rem); 
+    margin-bottom: 1rem;
+}
+
+.search-bar .slds-form-element__label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.search-bar .slds-form-element__control {
+    margin-top: 0.5rem;
+}
+
+.search-bar .slds-input {
+    width: 100%;
+}
+
+.search-bar .slds-combobox {
+    width: 100%;
+}
+
+.search-bar .slds-button {
+    margin-top: 0.5rem;
+}
+.unit-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.unit-table th,
+.unit-table td {
+    padding: 8px;
+    border: 1px solid #dddddd;
+    text-align: left;
+}
+
+.unit-table th {
+    background-color: #f2f2f2;
+}
+
+.unit-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.unit-table tbody tr:hover {
+    background-color: #e2e2e2;
+}
+
+.link-style {
+    cursor: pointer;
+    color: rgb(3, 64, 114);
+    text-decoration: underline;
+}
+.date-section {
+    margin-bottom: 1rem;
+}
+
+.date-range-options {
+    margin-top: 1rem;
+}
+.container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.Buttoncall{
+     flex-wrap: wrap;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}

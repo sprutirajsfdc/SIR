@@ -1,0 +1,79 @@
+<template>
+    <lightning-card>
+        <!-- Header / Navbar -->
+        <div class="slds-box slds-box_x-small" style="background-color: rgb(1, 1, 56); color: white;">
+            <h1 class="slds-align_absolute-center"><strong>LISTING MANAGER</strong></h1>
+        </div>
+
+        <!-- Filters -->
+        <div class="slds-m-around_small">
+            <!-- Reset Button Top-Right -->
+            <div class="slds-grid slds-grid_align-end slds-m-bottom_small">
+                <lightning-button label="Reset" onclick={handleReset}></lightning-button>
+            </div>
+
+            <!-- Filters Grid -->
+            <div class="slds-grid slds-wrap slds-gutters">
+
+                <!-- Dynamic Fields (excluding OwnerId) -->
+                <template for:each={filterFieldsData} for:item="field">
+                    <div key={field.apiName} class="slds-col slds-size_1-of-4 slds-p-around_xx-small">
+                        <template if:true={field.isPicklist}>
+                            <lightning-combobox
+                                name={field.apiName}
+                                label={field.label}
+                                options={field.picklistOptions}
+                                onchange={handleFilterChange}>
+                            </lightning-combobox>
+                        </template>
+
+                        <template if:true={field.isTextInput}>
+                            <lightning-input
+                                name={field.apiName}
+                                label={field.label}
+                                onchange={handleFilterChange}
+                                placeholder="Enter filter value">
+                            </lightning-input>
+                        </template>
+                    </div>
+                </template>
+                <!-- OwnerId Record Picker (outside loop) -->
+                <div class="slds-col slds-size_1-of-4 slds-p-around_xx-small">
+                    <lightning-record-picker
+                        name="OwnerId"
+                        label="Owner"
+                        placeholder="Search Owner..."
+                        object-api-name="User"
+                        onchange={handleFilterChange}>
+                    </lightning-record-picker>
+                </div>
+            </div>
+
+            <!-- Datatable -->
+            <lightning-datatable
+                data={paginatedData}
+                columns={columns}
+                key-field="Id">
+            </lightning-datatable>
+
+            <!-- Pagination Info -->
+            <div class="slds-m-top_medium slds-grid slds-grid_align-spread">
+                <div><strong>Total Records: {totalRecords}</strong></div>
+                <div><strong>Page {currentPage} of {totalPages}</strong></div>
+                <div>
+                    <lightning-button label="Previous" onclick={handlePrevious} disabled={disablePrevious}></lightning-button>
+                    <lightning-button label="Next" onclick={handleNext} disabled={disableNext} class="slds-m-left_small"></lightning-button>
+                </div>
+            </div>
+
+            <!-- Page Size Picker -->
+            <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread slds-p-top_x-small">
+                <select class="slds-select slds-size_xx-small" onchange={handleRecordsPerPage}>
+                    <template for:each={pageSizeOptions} for:item="option">
+                        <option key={option.value} value={option.value}>{option.label}</option>
+                    </template>
+                </select>
+            </div>
+        </div>
+    </lightning-card>
+</template>

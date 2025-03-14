@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <assignments>
+        <name>Assign_Property_Name</name>
+        <label>Assign Property Name</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PropertyNameUpdate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Decesion_Based_on_Status</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Red_Listed_Date_Time</name>
+        <label>Assign Red Listed Date Time</label>
+        <locationX>50</locationX>
+        <locationY>767</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Red_Listed_Date_Time__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Now</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Red_Listed_Review_Date_Time</name>
+        <label>Assign Red Listed Review Date Time</label>
+        <locationX>578</locationX>
+        <locationY>767</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Red_Listed_Review_Date_Time__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Now</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Sold_Date_Time</name>
+        <label>Assign Sold Date Time</label>
+        <locationX>314</locationX>
+        <locationY>767</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Sold_Date_Time__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Now</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Check_Unit_Number</name>
+        <label>Check Unit Number</label>
+        <locationX>446</locationX>
+        <locationY>311</locationY>
+        <defaultConnector>
+            <targetReference>Decesion_Based_on_Status</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Changed</name>
+            <conditionLogic>(1 AND 2) OR ( 2 AND 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.CD_Unit_Number__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CD_Unit_Number__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>ISNEW</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Property_Name</targetReference>
+            </connector>
+            <label>Is Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Decesion_Based_on_Status</name>
+        <label>Decesion Based on Status</label>
+        <locationX>446</locationX>
+        <locationY>647</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Red_Listed1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Red Listed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Red_Listed_Date_Time</targetReference>
+            </connector>
+            <label>Red Listed</label>
+        </rules>
+        <rules>
+            <name>Sold1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sold</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Sold_Date_Time</targetReference>
+            </connector>
+            <label>Sold</label>
+        </rules>
+        <rules>
+            <name>Red_Listed_Review1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Red Listed Review</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Red_Listed_Review_Date_Time</targetReference>
+            </connector>
+            <label>Red Listed Review</label>
+        </rules>
+    </decisions>
+    <description>When record is Created and changed Unit Number, Assign Property Name, Assign Date time based on Status.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>ISNEW</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <formulas>
+        <name>Now</name>
+        <dataType>DateTime</dataType>
+        <expression>NOW()</expression>
+    </formulas>
+    <formulas>
+        <description>Property Name - Unit No + Project Name</description>
+        <name>PropertyNameUpdate</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.CD_Unit_Number__c} + &quot;-&quot; + {!$Record.Project__r.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>redListedReviewTime</name>
+        <dataType>DateTime</dataType>
+        <expression>(
+IF(
+ISPICKVAL({!$Record.Status__c}, &apos;Red List Review&apos;),
+NOW(), 
+{!$Record.Red_Listed_Review_Date_Time__c}
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>redListedTime</name>
+        <dataType>DateTime</dataType>
+        <expression>(
+IF(
+ISPICKVAL({!$Record.Status__c}, &apos;Red Listed&apos;),
+NOW(), 
+{!$Record.Red_Listed_Date_Time__c}
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>soldTime</name>
+        <dataType>DateTime</dataType>
+        <expression>(
+IF(
+ISPICKVAL({!$Record.Status__c}, &apos;Sold&apos;),
+NOW(), 
+{!$Record.Sold_Date_Time__c}
+)
+)</expression>
+    </formulas>
+    <interviewLabel>Unit Name Update Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Unit Before Flow - Update Unit Name</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>320</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Unit_Number</targetReference>
+        </connector>
+        <object>Unit__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

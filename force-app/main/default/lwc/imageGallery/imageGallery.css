@@ -1,0 +1,22 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.image-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.image-thumbnail {
+    max-width: 100%;
+    height: auto;
+}
+
+.drag-icon {
+    cursor: move;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,1202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <assignments>
+        <name>Assign_Currency</name>
+        <label>Assign Currency</label>
+        <locationX>182</locationX>
+        <locationY>4895</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.CurrencyIsoCode</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Property_Valuation__r.CurrencyIsoCode</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description>only when record is created assign default values to field</description>
+        <name>Assign_Default_Values</name>
+        <label>Assign Default Values</label>
+        <locationX>182</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Country_Code__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>United Arab Emirates</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.os_PostalCode_pb__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>00000</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.os_State_pb__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>NA</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>check_Is_Listing_Exclusive</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>when condition match update all listing agent field from Record. Owner(user) .</description>
+        <name>Assign_from_Owner_user</name>
+        <label>Assign from Owner(user)</label>
+        <locationX>182</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Email__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Info__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Listing_Agent_Info__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Email__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PropertyFinderAgentEmail</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Mobile_Phone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Cleanmobilephone</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Phone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Phone</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>check_Country_Postal_Code_State</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>When condition match then assign default values to the field.</description>
+        <name>Assign_Lost_Reason_Status_System_Allowed_Portal</name>
+        <label>Assign Lost Reason, Status, System Allowed Portal</label>
+        <locationX>182</locationX>
+        <locationY>1295</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Lost_Reason__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Form A Expiry</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Lost</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.System_Allowed_for_Portals__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Check_status1</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignListing_type_intial</name>
+        <label>Listing type intial R</label>
+        <locationX>314</locationX>
+        <locationY>2195</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.gsir_listing_type_initial__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>R</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>check_Listing_verified_by_cc</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>DateTimePUblished</name>
+        <label>DateTimePublished</label>
+        <locationX>182</locationX>
+        <locationY>1595</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Publish_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Now</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>check_Listing_price_is_changed</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>update all fields  with assign value</description>
+        <name>LastPrice_ChangedOn</name>
+        <label>LastPrice ChangedOn</label>
+        <locationX>182</locationX>
+        <locationY>1895</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.LastPriceChangedOn__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Now</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Last_Price_Changed_By__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.LastModifiedById</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Price_Expiry__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>UpdatesListingPriceExpiryDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>check_Listing_type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Listing_type_initial</name>
+        <label>Listing type initial S</label>
+        <locationX>50</locationX>
+        <locationY>2195</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.gsir_listing_type_initial__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>S</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>check_Listing_verified_by_cc</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>when condition match then update &quot;Exclusive Listing Date&quot; filed with current date and time.</description>
+        <name>ListingExclusivity_date</name>
+        <label>ListingExclusivity date</label>
+        <locationX>182</locationX>
+        <locationY>995</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Exclusive_Listing_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Now</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>check_Status</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Mapping_Property_Type_Field</name>
+        <label>Mapping Property Type Field</label>
+        <locationX>182</locationX>
+        <locationY>2795</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Property_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>formulafield</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Status_Draft</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>On_Creation_Prefill_Values</name>
+        <label>On Creation  Prefill Values</label>
+        <locationX>182</locationX>
+        <locationY>4295</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Email__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Info__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Listing_Agent_Info__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Email__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PropertyFinderAgentEmail</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Phone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Phone</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.os_Listing_Agent_Photo__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Listing_Agent_Info__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.os_State_pb__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>STATE</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>When_City_Propertyfinder_Changes</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Prefill_from_Owner_user</name>
+        <label>Prefill from Owner(user)</label>
+        <locationX>182</locationX>
+        <locationY>3995</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Email__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Info__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Listing_Agent_Info__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Email__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>PropertyFinderAgentEmail</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Agent_Phone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Owner:User.Phone</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.os_State_pb__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>STATE</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>check_Property_Finder_New_Listing</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>System_allowed_for_portal</name>
+        <label>System allowed for portal.</label>
+        <locationX>182</locationX>
+        <locationY>3695</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.System_Allowed_for_Portals__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>check_Property_Finder_Existing_Listing</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Sytsem_allowed_for_portal</name>
+        <label>Sytsem allowed for portal</label>
+        <locationX>182</locationX>
+        <locationY>3095</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.System_Allowed_for_Portals__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Year_Built_Field</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_City</name>
+        <label>Update City</label>
+        <locationX>182</locationX>
+        <locationY>4595</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.City__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.City_County__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.City__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.City_County__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Property_valuation_not_null</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>update_Log_Date</name>
+        <label>Update Log Date</label>
+        <locationX>182</locationX>
+        <locationY>2495</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Listing_Verified_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Now</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>check_populate_property_type_field</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Year_built_formula</name>
+        <label>Year built formula</label>
+        <locationX>182</locationX>
+        <locationY>3395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Year_Built_Text__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Update_Year_Built_FieldFormula</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Exclusive_Listing_Under_Contract</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>When listing Record is created  condition is match then we update 
+ listing object field name is &quot;country&quot; ,&quot;Zip Postal Code&quot;, &quot;state &quot;.(PB:-Country / Postal Code / State Default value)</description>
+        <name>check_Country_Postal_Code_State</name>
+        <label>Check Country / Postal Code / State</label>
+        <locationX>314</locationX>
+        <locationY>587</locationY>
+        <defaultConnector>
+            <targetReference>check_Is_Listing_Exclusive</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Country_Postal_Code_State_Default_value</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Listing_Region__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>UK Listing	</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CurrencyIsoCode</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>GBP</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Default_Values</targetReference>
+            </connector>
+            <label>Country / Postal Code / State Default value</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>When listing Record is created and edited condition is match then we update 
+ listing object field name is &quot;Exclusive listing date&quot; .(Exclusive Listing Date)</description>
+        <name>check_Is_Listing_Exclusive</name>
+        <label>Check Is Listing Exclusive</label>
+        <locationX>314</locationX>
+        <locationY>887</locationY>
+        <defaultConnector>
+            <targetReference>check_Status</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Is_Listing_Exclusive</name>
+            <conditionLogic>(1 AND 2) OR (1 AND 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Mandate__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Exclusive</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Mandate__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ListingExclusivity_date</targetReference>
+            </connector>
+            <label>Is Listing Exclusive</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>When listing Record is created and edited condition is match then we update 
+ listing object field name is &quot;Listing price change on, listing price changed by, listing price expiry&quot;.(Listing Price Updates)</description>
+        <name>check_Listing_price_is_changed</name>
+        <label>Check Listing price is changed</label>
+        <locationX>314</locationX>
+        <locationY>1787</locationY>
+        <defaultConnector>
+            <targetReference>check_Listing_type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Listing_price_is_changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.os_ListingPrice_pb__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>LastPrice_ChangedOn</targetReference>
+            </connector>
+            <label>Listing price is changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>When listing Record is created and edited condition is match then we update 
+ listing object field update record.(PB:-Copy user details from user obj to listings)</description>
+        <name>check_listing_status</name>
+        <label>Check listing status</label>
+        <locationX>314</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>check_Country_Postal_Code_State</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>If_listing_status_is_active_or_published</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Active</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Published</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_from_Owner_user</targetReference>
+            </connector>
+            <label>If listing status is active or published</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>When listing Record is created and edited condition is match then we update 
+ listing object field name is listing type initial is sale = s and Rent = R (Listing type Initial)</description>
+        <name>check_Listing_type</name>
+        <label>Check Listing type</label>
+        <locationX>314</locationX>
+        <locationY>2087</locationY>
+        <defaultConnector>
+            <targetReference>check_Listing_verified_by_cc</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Listing_type_sale</name>
+            <conditionLogic>(1 AND 2) OR (1 AND 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Listing_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sale</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Listing_Type__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Listing_type_initial</targetReference>
+            </connector>
+            <label>Listing type = Sale</label>
+        </rules>
+        <rules>
+            <name>Listing_type_Rent</name>
+            <conditionLogic>(1 AND 2) OR (1 AND 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Listing_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Rent</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Listing_Type__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>AssignListing_type_intial</targetReference>
+            </connector>
+            <label>Listing type = Rent</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>When listing Record is created or edited ,&quot;listing verified by cc = true&quot; condition is match then we update 
+ listing object field name is listing verify date.(Listing Verified Date)</description>
+        <name>check_Listing_verified_by_cc</name>
+        <label>Check Listing verified by cc</label>
+        <locationX>314</locationX>
+        <locationY>2387</locationY>
+        <defaultConnector>
+            <targetReference>check_populate_property_type_field</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Listing_check_if_verified</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Listing_Verified_by_CC__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>fornew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>update_Log_Date</targetReference>
+            </connector>
+            <label>Listing check if verified</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>When listing Record is created and edited condition is match then we update 
+ listing object field name  property type.(Populate Property type fields)</description>
+        <name>check_populate_property_type_field</name>
+        <label>Check populate property type field</label>
+        <locationX>314</locationX>
+        <locationY>2687</locationY>
+        <defaultConnector>
+            <targetReference>Status_Draft</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Property_type_field</name>
+            <conditionLogic>(1 AND 2) OR (1 AND 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Property_Sub_Type__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Property_Sub_Type__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Mapping_Property_Type_Field</targetReference>
+            </connector>
+            <label>Property type field</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>When listing Record is created and edited condition is match then we  Copy user details from 
+user object to listings(Property Finder Field Mapping - Existing Listing)</description>
+        <name>check_Property_Finder_Existing_Listing</name>
+        <label>Check Property Finder Existing Listing</label>
+        <locationX>314</locationX>
+        <locationY>3887</locationY>
+        <defaultConnector>
+            <targetReference>check_Property_Finder_New_Listing</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Populate_Fields</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Prefill_from_Owner_user</targetReference>
+            </connector>
+            <label>Populate Fields</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>When listing Record is created condtion is match then we  Copy user details from 
+user object to listings.(Property Finder Field Mapping - New Listing )</description>
+        <name>check_Property_Finder_New_Listing</name>
+        <label>Check Property Finder New Listing</label>
+        <locationX>314</locationX>
+        <locationY>4187</locationY>
+        <defaultConnector>
+            <targetReference>When_City_Propertyfinder_Changes</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>New_Record_Created</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>On_Creation_Prefill_Values</targetReference>
+            </connector>
+            <label>New Record Created</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>When listing Record is created and edited condition is match then we update 
+ listing object field name is &quot;Lost reason, status, system allowed portal&quot;.(Form A Expiry &gt; Status to Lost)</description>
+        <name>check_Status</name>
+        <label>Check Status</label>
+        <locationX>314</locationX>
+        <locationY>1187</locationY>
+        <defaultConnector>
+            <targetReference>Check_status1</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Published</name>
+            <conditionLogic>(5 AND 1 AND 2 AND 6) OR ( 1 AND 3 AND 2 AND 6) OR (2 AND 4 AND 1 AND 6) OR(1 AND 2 AND 3 AND 4 AND 6)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Published</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.gsir_form_a_expiry__c</leftValueReference>
+                <operator>LessThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference>Now</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.gsir_form_a_expiry__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.gsir_form_a_expiry__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Lost_Reason_Status_System_Allowed_Portal</targetReference>
+            </connector>
+            <label>Published</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_status1</name>
+        <label>Check status</label>
+        <locationX>314</locationX>
+        <locationY>1487</locationY>
+        <defaultConnector>
+            <targetReference>check_Listing_price_is_changed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Published1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Published</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>DateTimePUblished</targetReference>
+            </connector>
+            <label>Published</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Exclusive_Listing_Under_Contract</name>
+        <label>Exclusive Listing Under Contract</label>
+        <locationX>314</locationX>
+        <locationY>3587</locationY>
+        <defaultConnector>
+            <targetReference>check_Property_Finder_Existing_Listing</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>mandate_Status</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Mandate__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Exclusive</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Under Contract</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>System_allowed_for_portal</targetReference>
+            </connector>
+            <label>Mandate &amp; Status</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Property_valuation_not_null</name>
+        <label>Property valuation not null</label>
+        <locationX>314</locationX>
+        <locationY>4787</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>checking_property_valuation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Property_Valuation__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Property_Valuation__r.CurrencyIsoCode</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Currency</targetReference>
+            </connector>
+            <label>Checking property valuation</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Status_Draft</name>
+        <label>Status=Draft</label>
+        <locationX>314</locationX>
+        <locationY>2987</locationY>
+        <defaultConnector>
+            <targetReference>Update_Year_Built_Field</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Status_Draft_sold_rented</name>
+            <conditionLogic>(1 OR 2 OR 3 OR 4 OR 5) AND ( 6 OR 7)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Draft</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Sold</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Rented</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Lost</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Sytsem_allowed_for_portal</targetReference>
+            </connector>
+            <label>Status-Draft,Sold,Rented</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Update_Year_Built_Field</name>
+        <label>Update Year Built Field</label>
+        <locationX>314</locationX>
+        <locationY>3287</locationY>
+        <defaultConnector>
+            <targetReference>Exclusive_Listing_Under_Contract</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Year_Built_Text</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Year_Built_Text__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Year_built_formula</targetReference>
+            </connector>
+            <label>Year Built Text</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>When_City_Propertyfinder_Changes</name>
+        <label>When City Propertyfinder Changes</label>
+        <locationX>314</locationX>
+        <locationY>4487</locationY>
+        <defaultConnector>
+            <targetReference>Property_valuation_not_null</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>City_Propertyfinder</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.City__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.City__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CurrencyIsoCode</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>GBP</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Sharing_Rule__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>United Kingdom SIR</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_City</targetReference>
+            </connector>
+            <label>City Propertyfinder</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>CheckPopulatefields</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(ISNEW())</expression>
+    </formulas>
+    <formulas>
+        <name>Cleanmobilephone</name>
+        <dataType>String</dataType>
+        <expression>IF ( Contains( {!$Record.Owner:User.MobilePhone} , &apos; &apos; ), SUBSTITUTE( {!$Record.Owner:User.MobilePhone}, &quot; &quot;, &quot;&quot; ), 
+IF ( Contains( {!$Record.Owner:User.MobilePhone} , &apos;+&apos; ), SUBSTITUTE( {!$Record.Owner:User.MobilePhone} , &quot;+&quot;, &quot;&quot; ), {!$Record.Owner:User.MobilePhone} ))</expression>
+    </formulas>
+    <formulas>
+        <name>formulabucket</name>
+        <dataType>String</dataType>
+        <expression>IF( NOT(CONTAINS({!$Record.Listing_Inquiry_Recipient__r.UserRole.Name} , &quot;DIFC Sales&quot;)) , IF(CONTAINS({!$Record.Listing_Inquiry_Recipient__r.UserRole.Name}, &quot;Offplan Sales&quot;), &quot;Offplan&quot;, 
+IF
+(
+OR
+(
+CONTAINS({!$Record.Listing_Inquiry_Recipient__r.UserRole.Name}, &quot;Brokerage Sales&quot;),
+CONTAINS({!$Record.Listing_Inquiry_Recipient__r.UserRole.Name}, &quot;HERE Sales&quot;),
+CONTAINS({!$Record.Listing_Inquiry_Recipient__r.UserRole.Name}, &quot;SPF Sales&quot;)
+)
+,
+&quot;Brokerage&quot;, &quot;Other&quot;) 
+) , &quot;DIFC&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>formulafield</name>
+        <dataType>String</dataType>
+        <expression>CASE( {!$Record.Property_Sub_Type__c},
+&quot;Residential - Apartment&quot; , &quot;Apartment&quot; , 
+&quot;Residential - Bulk Units&quot; , &quot;Bulk Units&quot; , 
+&quot;Residential - Bungalow&quot; , &quot;Bungalow&quot; , 
+&quot;Residential - Chalet&quot; , &quot;Chalet&quot; , 
+&quot;Residential - Compound&quot; , &quot;Compound&quot; , 
+&quot;Residential - Duplex&quot; , &quot;Duplex&quot; , 
+&quot;Residential - Full floor&quot; , &quot;Full floor&quot; , 
+&quot;Residential - Half floor&quot; , &quot;Half floor&quot; , 
+&quot;Residential - Labor Camp&quot; , &quot;Labor Camp&quot; , 
+&quot;Residential - Land&quot; , &quot;Land&quot; , 
+&quot;Residential - Penthouse&quot; , &quot;Penthouse&quot; , 
+&quot;Residential - Townhouse&quot; , &quot;Townhouse&quot; , 
+&quot;Residential - Triplex&quot; , &quot;Triplex&quot; , 
+&quot;Residential - Villa&quot; , &quot;Villa&quot; , 
+&quot;Residential - Whole Building&quot; , &quot;Whole Building&quot; , 
+&quot;Commercial - Bulk Units&quot; , &quot;Bulk Units&quot; , 
+&quot;Commercial - Factory&quot; , &quot;Factory&quot; , 
+&quot;Commercial - Full floor&quot; , &quot;Full floor&quot; , 
+&quot;Commercial - Half floor&quot; , &quot;Half floor&quot; , 
+&quot;Commercial - Hotel Apartment&quot; , &quot;Hotel Apartment&quot; , 
+&quot;Commercial - Labor Camp&quot; , &quot;Labor Camp&quot; , 
+&quot;Commercial - Medical Facility&quot; , &quot;Medical Facility&quot; , 
+&quot;Commercial - Office Space&quot; , &quot;Office Space&quot; , 
+&quot;Commercial - Plot&quot; , &quot;Plot&quot; , 
+&quot;Commercial - Restaurant&quot; , &quot;Restaurant&quot; , 
+&quot;Commercial - Retail&quot; , &quot;Retail&quot; , 
+&quot;Commercial - Shop&quot; , &quot;Shop&quot; , 
+&quot;Commercial - Show Room&quot; , &quot;Show Room&quot; , 
+&quot;Commercial - Staff Accommodation&quot; , &quot;Staff Accommodation&quot; , 
+&quot;Commercial - Storage&quot; , &quot;Storage&quot; , 
+&quot;Commercial - Store&quot; , &quot;Store&quot; , 
+&quot;Commercial - Villa&quot; , &quot;Villa&quot; , 
+&quot;Commercial - Warehouse&quot; , &quot;Warehouse&quot; , 
+&quot;Commercial - Whole Building&quot; , &quot;Whole Building&quot; , 
+&quot;None&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>fornew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <formulas>
+        <name>IsNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <formulas>
+        <name>ListingAgentName</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.Owner:User.FirstName}&amp;&quot; &quot;&amp;{!$Record.Owner:User.LastName}</expression>
+    </formulas>
+    <formulas>
+        <name>Now</name>
+        <dataType>DateTime</dataType>
+        <expression>NOW()</expression>
+    </formulas>
+    <formulas>
+        <name>PropertyFinderAgentEmail</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE({!$Record.Owner:User.Email}, &quot;@&quot;, &quot;pf@&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>STATE</name>
+        <dataType>String</dataType>
+        <expression>IF(
+AND(
+TEXT({!$Record.CurrencyIsoCode}) = &apos;GBP&apos;,
+TEXT({!$Record.Sharing_Rule__c}) = &apos;United Kingdom SIR&apos;
+),
+{!$Record.os_State_pb__c},
+&apos;NA&apos;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>Update_Year_Built_FieldFormula</name>
+        <dataType>Number</dataType>
+        <expression>VALUE( $Record.Year_Built_Text__c )</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>UpdatesListingPriceExpiryDate</name>
+        <dataType>DateTime</dataType>
+        <expression>ADDMONTHS(NOW(),6)</expression>
+    </formulas>
+    <interviewLabel>Listing-Before Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Listing-Before Flow(PB mergerd)</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>188</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>check_listing_status</targetReference>
+        </connector>
+        <object>Listing__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+    <triggerOrder>500</triggerOrder>
+</Flow>

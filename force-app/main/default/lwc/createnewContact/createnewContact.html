@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Create Contact">
+        <template if:true={fields}>
+            <lightning-record-edit-form object-api-name="Contact" onsuccess={handleSuccess}>
+                <lightning-messages></lightning-messages>
+
+                <template for:each={fields} for:item="field">
+                    <lightning-input-field key={field} field-name={field} name={field} onchange={handleChange}></lightning-input-field>
+                </template>
+
+                <lightning-button variant="brand" type="submit" label="Create Contact"></lightning-button>
+            </lightning-record-edit-form>
+        </template>
+
+        <template if:true={duplicateContacts}>
+            <lightning-datatable
+                data={duplicateContacts}
+                columns={columns}
+                key-field="id"
+                hide-checkbox-column>
+            </lightning-datatable>
+        </template>
+    </lightning-card>
+</template>

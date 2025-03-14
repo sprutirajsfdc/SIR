@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="Portal Management">
+        <lightning-spinner if:true={isLoading} variant="brand"></lightning-spinner>
+
+        <lightning-datatable 
+            key-field="Id" 
+            data={portalData} 
+            columns={columns} 
+            hide-checkbox-column
+            onrowaction={handleButtonClick}>
+        </lightning-datatable>
+    </lightning-card>
+</template>

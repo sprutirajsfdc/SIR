@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title="Image Upload">
+        <template if:true={recordId}>
+            <div class="slds-p-around_medium">
+                <lightning-input type="file" 
+                                 label="Upload Images" 
+                                 accept=".png, .jpg, .jpeg" 
+                                 multiple onchange={handleFileChange}>
+                </lightning-input>
+                
+                <template if:true={images.length}>
+                    <div class="slds-grid slds-wrap slds-m-top_xx-small" style="gap: 2px;" ondragover={allowDrop}>
+                        <template for:each={images} for:item="image" for:index="index">
+                            <div key={image.id} class="slds-col slds-size_1-of-6" 
+                                 style="padding: 2px;" 
+                                 draggable="true" data-index={index} 
+                                 ondragstart={handleDragStart} 
+                                 ondrop={handleDrop}>
+                                <lightning-card style="border-radius: 5px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                                    <p class="slds-text-title_caps slds-align_absolute-center slds-m-bottom_xx-small">{image.serialNumber}</p>
+                                     <img src={image.url} alt="Uploaded Image" width="150" height="150" />
+                                         
+                                </lightning-card>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template if:false={recordId}>
+            <p class="slds-text-color_error slds-p-around_medium">
+                ⚠️ Error: Record ID is missing. Please use this component inside a record page.
+            </p>
+        </template>
+    </lightning-card>
+</template>

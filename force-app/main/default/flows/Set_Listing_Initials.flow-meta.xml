@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <decisions>
+        <name>UK_or_Gulf_Listing</name>
+        <label>UK or Gulf Listing</label>
+        <locationX>314</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>UK_Listing</name>
+            <conditionLogic>(1 AND 2) OR (1 AND 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Auto_Generated_broker_reference_ID__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>UK</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Auto_Generated_broker_reference_ID__c</leftValueReference>
+                <operator>EqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference>Set_Uk</targetReference>
+            </connector>
+            <label>UK Listing</label>
+        </rules>
+        <rules>
+            <name>Gulf_Listing</name>
+            <conditionLogic>(1 AND 2) OR (1 AND 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Auto_Generated_broker_reference_ID__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>GS</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Auto_Generated_broker_reference_ID__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_GS</targetReference>
+            </connector>
+            <label>Gulf Listing</label>
+        </rules>
+    </decisions>
+    <description>This flow works When Listing record is created or updated then checking
+for Record &gt; Auto Generated Broker reference id like if it contains UK or
+GS then based on this updating Listing Initial field as UK or GS.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>IsNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <interviewLabel>Set Listing Initials {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Set Listing Initials</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_GS</name>
+        <label>Set GS</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>Listing_Initials__c</field>
+            <value>
+                <stringValue>GS</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Uk</name>
+        <label>Set Uk</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>Country_Code__c</field>
+            <value>
+                <stringValue>UK</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Listing_Initials__c</field>
+            <value>
+                <stringValue>UK</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>188</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>UK_or_Gulf_Listing</targetReference>
+        </connector>
+        <object>Listing__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

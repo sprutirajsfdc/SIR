@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="CIF Record Edit Form">
+        <div class="slds-p-around_medium">
+            <!-- CIF Type Selector -->
+            <lightning-combobox 
+                label="CIF Type"
+                value={cifType}
+                options={cifTypeOptions}
+                onchange={handleCifTypeChange}>
+            </lightning-combobox>
+
+            <!-- Individual Fields -->
+            <template if:true={isIndividual}>
+                <lightning-input label="First Name" value={firstName} onchange={handleFirstNameChange}></lightning-input>
+                <lightning-input label="Last Name" value={lastName} onchange={handleLastNameChange}></lightning-input>
+                <lightning-input label="Date of Birth" type="date" value={dob} onchange={handleDobChange}></lightning-input>
+            </template>
+
+            <!-- Corporate Fields -->
+            <template if:true={isCorporate}>
+                <lightning-input label="Company Name" value={companyName} onchange={handleCompanyNameChange}></lightning-input>
+                <lightning-input label="Company Registration Number" value={registrationNumber} onchange={handleRegistrationNumberChange}></lightning-input>
+                <lightning-input label="Date of Incorporation" type="date" value={incorporationDate} onchange={handleIncorporationDateChange}></lightning-input>
+            </template>
+
+            <!-- Joint Account Fields -->
+            <template if:true={isJoint}>
+                <lightning-input label="First Joint Holder Name" value={firstJointHolder} onchange={handleFirstJointHolderChange}></lightning-input>
+                <lightning-input label="Second Joint Holder Name" value={secondJointHolder} onchange={handleSecondJointHolderChange}></lightning-input>
+            </template>
+
+            <!-- Project Record Link -->
+            <template if:true={generatedLink}>
+                <div class="slds-m-top_medium">
+                    <lightning-button label="Generate CIF Record Link" onclick={generateLink}></lightning-button>
+                    <p>Your CIF Record Link: <a href={generatedLink} target="_blank">{generatedLink}</a></p>
+                </div>
+            </template>
+
+            <!-- Save Button -->
+            <lightning-button variant="brand" label="Save CIF Record" onclick={handleSave}></lightning-button>
+        </div>
+    </lightning-card>
+</template>
